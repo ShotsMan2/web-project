@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Product Management</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Bildirim Ekranı (Toast) */
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notify-success {
+            background-color: #2ecc71;
+        }
+
+        .notify-error {
+            background-color: #e74c3c;
+        }
+
+        .show-notify {
+            transform: translateX(0) !important;
+        }
+
+        /* Form Alanı */
+        .form-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            flex-shrink: 0;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            width: 100%;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-submit {
+            background-color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .btn-cancel {
+            background-color: #95a5a6;
+            display: none;
+        }
+
+        /* Sadece edit modunda görünür */
+
+        /* Tablo Alanı */
+        .table-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        tr:hover {
+            background-color: #f1f2f6;
+        }
+
+        /* Aksiyon Butonları */
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .btn-edit {
+            background-color: #f39c12;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="notification">Message</div>
+
+    <div class="form-section">
+        <h2 id="formTitle">Add New Product</h2>
+        <form id="productForm" method="post" >
+            <input type="hidden" id="productId">
+
+            <div class="form-group">
+                <label for="name">Product Name *</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price (TL) *</label>
+                <input type="number" id="price" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock Quantity *</label>
+                <input type="number" id="stock" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category *</label>
+                <select id="category" required>
+                    <option value="">Select Category...</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Furniture">Furniture</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-submit" id="submitBtn">Save Product</button>
+            <button type="button" class="btn btn-cancel" id="cancelBtn" onclick="resetForm()">Cancel Edit</button>
+        </form>
+    </div>
+
+    <div class="table-section">
+        <h2>Product List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card Component</title>
+    <style>
+        /* Genel sayfa düzeni */
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; gap: 20px; justify-content: center; padding: 50px; }
+        
+        /* Ürün Kartı (Responsive Tasarım) */
+        .product-card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; width: 300px; text-align: center; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-image { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        .product-name { font-size: 1.2rem; color: #333; margin: 15px 0 10px; }
+        
+        /* Fiyat ve Stok Stilleri */
+        .price-container { margin-bottom: 15px; }
+        .regular-price { font-size: 1.1rem; color: #333; font-weight: bold; }
+        .old-price { text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 10px; }
+        .discounted-price { color: #e74c3c; font-size: 1.2rem; font-weight: bold; }
+        .stock-status { margin-bottom: 15px; font-weight: bold; }
+        .in-stock { color: #2ecc71; }
+        .out-of-stock { color: #e74c3c; }
+        
+        /* Buton Stilleri */
+        .add-to-cart-btn { background-color: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1rem; transition: background 0.3s; }
+        .add-to-cart-btn:hover:not(:disabled) { background-color: #2980b9; }
+        .add-to-cart-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+    <div id="root" style="display: flex; gap: 20px; flex-wrap: wrap;"></div>
+
+    <script src="productCard.js"></script>
+</body>
+</html>
