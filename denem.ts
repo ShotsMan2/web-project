@@ -62,13 +62,13 @@ function findMinMaxPrice(productList: Product[]) {
 
 // 4. Konsol Çıktıları (Çalışan ekran çıktısı gösterme kuralı için)
 console.log("--- Fiyata Göre Sıralı ---");
-console.log(sortByPrice(products));
+console.log(JSON.stringify(sortByPrice(products)));
 
 console.log("\n--- Sadece Stokta Olanlar ---");
-console.log(filterInStock(products));
+console.log(JSON.stringify(filterInStock(products)));
 
 console.log("\n--- Kategoriye Göre Gruplanmış ---");
-console.log(groupByCategory(products));
+console.log(JSON.stringify(groupByCategory(products)));
 
 console.log("\n--- En Ucuz ve En Pahalı Ürün ---");
-console.log(findMinMaxPrice(products));
+console.log(JSON.stringify(findMinMaxPrice(products)));
